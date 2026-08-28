@@ -1,250 +1,480 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Navbar from "@/app/Navbar";
+import { useEffect, useState } from "react";
+
+const categories = [
+  {
+    name: "STABILIZERS",
+    subtitle: "Voltage Protection",
+    icon: "⚡",
+    color: "cyan",
+  },
+  {
+    name: "INVERTERS",
+    subtitle: "Reliable Power",
+    icon: "🔋",
+    color: "pink",
+  },
+  {
+    name: "UPS",
+    subtitle: "Backup Power",
+    icon: "◈",
+    color: "purple",
+  },
+  {
+    name: "BATTERIES",
+    subtitle: "Long Lasting Energy",
+    icon: "🔋",
+    color: "blue",
+  },
+  {
+    name: "INVERTER TROLLEYS",
+    subtitle: "Complete Power Setup",
+    icon: "▣",
+    color: "orange",
+  },
+  {
+    name: "AC & FRIDGE STANDS",
+    subtitle: "Strong. Simple. Reliable.",
+    icon: "◇",
+    color: "green",
+  },
+];
 
 export default function Home() {
+  const [entered, setEntered] = useState(false);
+
+  // Always start the homepage at the very top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Entrance animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setEntered(true);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="min-h-screen bg-white text-gray-900">
+    <main className={`site ${entered ? "entered" : ""}`}>
 
-      <Navbar />
+      {/* ================= INTRO ================= */}
 
-      {/* HERO */}
-      <section
-        id="home"
-        className="relative flex min-h-[85vh] items-center overflow-hidden px-6"
-      >
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 md:grid-cols-2">
+      <section className="intro">
+        <div className="stars" />
 
-          {/* LEFT */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-              Tewari Enterprise
-            </p>
+        <div className="moon" />
 
-            <h1 className="text-5xl font-bold tracking-tight md:text-7xl">
-              Reliable
-              <span className="block text-blue-600">
-                Electronics.
-              </span>
-            </h1>
+        <div className="petals">
+          <span>🌸</span>
+          <span>🌸</span>
+          <span>🌸</span>
+          <span>🌸</span>
+          <span>🌸</span>
+          <span>🌸</span>
+          <span>🌸</span>
+          <span>🌸</span>
+        </div>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
-              Quality electronics and trusted solutions for your
-              home and business. Discover products selected with
-              reliability and performance in mind.
-            </p>
+        <div className="intro-content">
+          <p className="intro-small">WELCOME TO</p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <h1>TEWARI</h1>
 
-              <motion.a
-                href="/catalog"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="rounded-full bg-blue-600 px-7 py-3 text-center font-medium text-white shadow-lg shadow-blue-600/20"
-              >
-                Explore Our Catalog →
-              </motion.a>
+          <h2>ENTERPRISE</h2>
 
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="rounded-full border border-gray-300 px-7 py-3 text-center font-medium transition hover:bg-gray-100"
-              >
-                Contact Us
-              </motion.a>
+          <div className="intro-line" />
 
-            </div>
-          </motion.div>
+          <p>POWER • PROTECTION • PERFORMANCE</p>
+        </div>
 
+        {/* Japanese Gate */}
 
-          {/* RIGHT - FEATURED PRODUCT */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
+        <div className="torii">
+          <div className="torii-top" />
+          <div className="torii-top-glow" />
 
-            <div className="relative overflow-hidden rounded-3xl bg-gray-100 p-10">
+          <div className="torii-pillar left" />
+          <div className="torii-pillar right" />
 
-              <div className="absolute right-6 top-6 rounded-full bg-white px-4 py-2 text-sm font-semibold shadow-sm">
-                Featured
-              </div>
+          <div className="torii-cross" />
 
-              <div className="flex h-100 items-center justify-center">
+          <div className="torii-inner-glow" />
+        </div>
 
-                {/* Temporary stabilizer placeholder */}
-                <div className="text-center">
-                  <div className="text-9xl">
-                    ⚡
-                  </div>
+        <div className="ground" />
 
-                  <p className="mt-6 text-xl font-semibold">
-                    Voltage Stabilizer
-                  </p>
-
-                  <p className="mt-2 text-gray-500">
-                    Reliable power protection
-                  </p>
-                </div>
-
-              </div>
-
-            </div>
-
-          </motion.div>
-
+        <div className="enter-text">
+          ENTERING TEWARI ENTERPRISE
+          <span>SCROLL TO EXPLORE</span>
         </div>
       </section>
 
 
-      {/* WHY CHOOSE US */}
-      <section className="bg-gray-50 px-6 py-24">
+      {/* ================= NAVBAR ================= */}
 
-        <div className="mx-auto max-w-6xl text-center">
+      <nav className="navbar">
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+        <div className="logo">
+          <span className="logo-symbol">⚡</span>
 
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">
-              Why Tewari Enterprise
-            </p>
-
-            <h2 className="mt-2 text-4xl font-bold">
-              Built Around Trust
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-gray-600">
-              We focus on providing dependable products and
-              service that our customers can rely on.
-            </p>
-
-          </motion.div>
+          <div>
+            <strong>TEWARI</strong>
+            <small>ENTERPRISE</small>
+          </div>
+        </div>
 
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="nav-links">
+          <a href="#home">Home</a>
+          <a href="#catalog">Catalog</a>
+          <a href="#wholesale">Wholesale</a>
+          <a href="#contact">Contact</a>
+        </div>
 
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="rounded-2xl bg-white p-8 shadow-sm"
+
+        <div className="nav-actions">
+          <button className="login">
+            LOGIN
+          </button>
+
+          <button className="signup">
+            SIGN UP
+          </button>
+
+          <button className="cart">
+            🛒
+          </button>
+        </div>
+
+      </nav>
+
+
+      {/* ================= HERO ================= */}
+
+      <section id="home" className="hero">
+
+        <div className="hero-grid" />
+
+        <div className="hero-text">
+
+          <div className="tag">
+            <span />
+            POWER SOLUTIONS • EST. 2000
+          </div>
+
+
+          <h1>
+            POWER YOUR
+            <br />
+            <span>WORLD.</span>
+          </h1>
+
+
+          <p>
+            Premium stabilizers, inverters, UPS systems and batteries
+            for homes, businesses and industries.
+          </p>
+
+
+          <div className="hero-buttons">
+
+            <a
+              href="#catalog"
+              className="primary-btn"
             >
-              <div className="text-4xl">✓</div>
-
-              <h3 className="mt-4 text-xl font-semibold">
-                Quality Products
-              </h3>
-
-              <p className="mt-3 text-gray-500">
-                Carefully selected electronics from trusted
-                brands and manufacturers.
-              </p>
-            </motion.div>
+              EXPLORE CATALOG →
+            </a>
 
 
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="rounded-2xl bg-white p-8 shadow-sm"
+            <a
+              href="#wholesale"
+              className="secondary-btn"
             >
-              <div className="text-4xl">⚡</div>
-
-              <h3 className="mt-4 text-xl font-semibold">
-                Reliable Solutions
-              </h3>
-
-              <p className="mt-3 text-gray-500">
-                Products designed to meet everyday needs with
-                dependable performance.
-              </p>
-            </motion.div>
-
-
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="rounded-2xl bg-white p-8 shadow-sm"
-            >
-              <div className="text-4xl">🤝</div>
-
-              <h3 className="mt-4 text-xl font-semibold">
-                Customer First
-              </h3>
-
-              <p className="mt-3 text-gray-500">
-                We believe in building long-term relationships
-                with our customers.
-              </p>
-            </motion.div>
+              WHOLESALE
+            </a>
 
           </div>
 
         </div>
 
-      </section>
+
+        {/* Power Orb */}
+
+        <div className="hero-orb">
+
+          <div className="orb-ring ring1" />
+          <div className="orb-ring ring2" />
+          <div className="orb-ring ring3" />
+
+          <div className="orb-core">
+            ⚡
+          </div>
+
+        </div>
 
 
-      {/* CATALOG CTA */}
-      <section className="px-6 py-24">
+        <div className="scroll-indicator">
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="mx-auto max-w-5xl rounded-3xl bg-gray-900 px-8 py-16 text-center text-white"
-        >
+          <span>SCROLL</span>
 
-          <h2 className="text-4xl font-bold md:text-5xl">
-            Looking for something specific?
-          </h2>
+          <div />
 
-          <p className="mx-auto mt-5 max-w-xl text-gray-300">
-            Browse our complete electronics catalog and
-            discover the products available from Tewari Enterprise.
-          </p>
-
-          <motion.a
-            href="/catalog"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-8 inline-block rounded-full bg-white px-8 py-3 font-semibold text-gray-900"
-          >
-            Browse Catalog →
-          </motion.a>
-
-        </motion.div>
+        </div>
 
       </section>
 
 
-      {/* CONTACT */}
+      {/* ================= CATALOG ================= */}
+
       <section
-        id="contact"
-        className="bg-gray-50 px-6 py-24 text-center"
+        id="catalog"
+        className="catalog"
       >
 
-        <h2 className="text-4xl font-bold">
-          Get in Touch
-        </h2>
+        <div className="section-heading">
 
-        <p className="mx-auto mt-4 max-w-xl text-gray-600">
-          Have a question about a product? Contact Tewari
-          Enterprise and we&apos;ll be happy to help.
-        </p>
+          <div>
+
+            <span className="section-tag">
+              01 / CATALOG
+            </span>
+
+            <h2>
+              CHOOSE YOUR
+              <br />
+              <span>POWER.</span>
+            </h2>
+
+          </div>
+
+
+          <p>
+            Explore our range of trusted power protection
+            and backup solutions.
+          </p>
+
+        </div>
+
+
+        <div className="category-grid">
+
+          {categories.map((category, index) => (
+
+            <a
+              href={`/products/${category.name
+                .toLowerCase()
+                .replaceAll(" ", "-")}`}
+              className={`category-card ${category.color}`}
+              key={category.name}
+            >
+
+              <div className="card-number">
+                0{index + 1}
+              </div>
+
+
+              <div className="category-icon">
+                {category.icon}
+              </div>
+
+
+              <div className="category-info">
+
+                <span>
+                  {category.subtitle}
+                </span>
+
+                <h3>
+                  {category.name}
+                </h3>
+
+              </div>
+
+
+              <div className="card-arrow">
+                ↗
+              </div>
+
+
+              <div className="card-glow" />
+
+            </a>
+
+          ))}
+
+        </div>
 
       </section>
 
 
-      {/* FOOTER */}
-      <footer className="border-t px-6 py-8 text-center text-sm text-gray-500">
-        © 2026 Tewari Enterprise. All rights reserved.
+      {/* ================= WHOLESALE ================= */}
+
+      <section
+        id="wholesale"
+        className="wholesale"
+      >
+
+        <div className="wholesale-glow" />
+
+
+        <div className="wholesale-content">
+
+          <span className="section-tag">
+            02 / BUSINESS
+          </span>
+
+
+          <h2>
+            BUY
+            <br />
+            <span>WHOLESALE.</span>
+          </h2>
+
+
+          <p>
+            Looking for bulk quantities?
+            Get special wholesale pricing for retailers,
+            dealers, contractors and businesses.
+          </p>
+
+
+          <button className="primary-btn">
+            REQUEST WHOLESALE PRICE →
+          </button>
+
+        </div>
+
+
+        <div className="wholesale-box">
+
+          <div className="box-line" />
+
+          <span>
+            WHOLESALE
+          </span>
+
+          <strong>
+            PRICING
+          </strong>
+
+          <small>
+            FOR BUSINESS
+          </small>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= FEATURES ================= */}
+
+      <section className="features">
+
+        <div className="feature">
+
+          <span>01</span>
+
+          <h3>
+            GENUINE PRODUCTS
+          </h3>
+
+          <p>
+            Quality products from trusted brands.
+          </p>
+
+        </div>
+
+
+        <div className="feature">
+
+          <span>02</span>
+
+          <h3>
+            RETAIL & WHOLESALE
+          </h3>
+
+          <p>
+            Competitive pricing for everyone.
+          </p>
+
+        </div>
+
+
+        <div className="feature">
+
+          <span>03</span>
+
+          <h3>
+            POWER EXPERTS
+          </h3>
+
+          <p>
+            Get help choosing the right solution.
+          </p>
+
+        </div>
+
+
+        <div className="feature">
+
+          <span>04</span>
+
+          <h3>
+            FAST ORDERING
+          </h3>
+
+          <p>
+            Find products and place orders easily.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= FOOTER ================= */}
+
+      <footer id="contact">
+
+        <div className="footer-logo">
+          ⚡ TEWARI ENTERPRISE
+        </div>
+
+
+        <p>
+          Powering homes, businesses and everything in between.
+        </p>
+
+
+        <div className="footer-links">
+
+          <a href="#home">
+            Home
+          </a>
+
+          <a href="#catalog">
+            Products
+          </a>
+
+          <a href="#wholesale">
+            Wholesale
+          </a>
+
+          <a href="#contact">
+            Contact
+          </a>
+
+        </div>
+
+
+        <div className="copyright">
+          © 2026 Tewari Enterprise. All rights reserved.
+        </div>
+
       </footer>
 
     </main>
