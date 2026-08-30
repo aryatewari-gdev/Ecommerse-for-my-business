@@ -1,98 +1,115 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import styles from "../auth.module.css";
 
-export default function Login() {
+export default function LoginPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-50 px-6 text-gray-900">
+    <main className={styles.authPage}>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl"
-      >
+      {/* Background */}
+      <div className={styles.backgroundGlow} />
+      <div className={styles.grid} />
 
-        {/* Logo */}
-        <div className="text-center">
-          <Link href="/" className="text-2xl font-bold">
-            Tewari Enterprise
-          </Link>
+      {/* Logo */}
+      <Link href="/" className={styles.logo}>
+        <span className={styles.logoSymbol}>⚡</span>
 
-          <h1 className="mt-8 text-3xl font-bold">
-            Welcome Back
-          </h1>
+        <div>
+          <strong>TEWARI</strong>
+          <small>ENTERPRISE</small>
+        </div>
+      </Link>
 
-          <p className="mt-2 text-gray-500">
-            Login to your account
-          </p>
+      {/* Login Card */}
+      <div className={styles.authCard}>
+
+        <div className={styles.cardTop}>
+          <span>WELCOME BACK</span>
+          <div />
         </div>
 
+        <h1>
+          LOGIN<span>.</span>
+        </h1>
 
-        {/* Login Form */}
-        <form className="mt-8 space-y-5">
+        <p className={styles.subtitle}>
+          Sign in to access your Tewari Enterprise account.
+        </p>
 
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Email Address
-            </label>
+        <form className={styles.form}>
+
+          {/* Email */}
+          <label>
+            EMAIL ADDRESS
 
             <input
               type="email"
-              placeholder="Enter your email"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              placeholder="you@example.com"
+              required
             />
-          </div>
+          </label>
 
-
-          <div>
-            <label className="mb-2 block text-sm font-medium">
-              Password
-            </label>
+          {/* Password */}
+          <label>
+            PASSWORD
 
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-600"
+              required
             />
-          </div>
+          </label>
 
+          {/* Options */}
+          <div className={styles.formOptions}>
 
-          <div className="flex justify-end">
-            <Link
-              href="#"
-              className="text-sm font-medium text-blue-600 hover:underline"
+            <label className={styles.remember}>
+              <input type="checkbox" />
+              <span>Remember me</span>
+            </label>
+
+            <button
+              type="button"
+              className={styles.forgot}
             >
-              Forgot Password?
-            </Link>
+              Forgot password?
+            </button>
+
           </div>
 
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          {/* Login */}
+          <button
             type="submit"
-            className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+            className={styles.submitButton}
           >
-            Login
-          </motion.button>
+            LOGIN →
+          </button>
 
         </form>
 
+        {/* Divider */}
+        <div className={styles.divider}>
+          <span />
+          OR
+          <span />
+        </div>
 
         {/* Signup */}
-        <p className="mt-8 text-center text-sm text-gray-500">
-          Don&apos;t have an account?{" "}
-          <Link
-            href="/signup"
-            className="font-semibold text-blue-600 hover:underline"
-          >
-            Create an account
+        <p className={styles.switchText}>
+          Don't have an account?{" "}
+
+          <Link href="/signup">
+            CREATE ACCOUNT
           </Link>
         </p>
 
-      </motion.div>
+      </div>
+
+      {/* Bottom text */}
+      <p className={styles.footerText}>
+        POWER • PROTECTION • PERFORMANCE
+      </p>
 
     </main>
   );

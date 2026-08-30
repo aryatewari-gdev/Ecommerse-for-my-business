@@ -1,270 +1,479 @@
 "use client";
 
+import Link from "next/link";
 import { useParams } from "next/navigation";
+import styles from "./page.module.css";
 
-const productData: Record<string, any> = {
-  stabilizers: {
-    title: "STABILIZERS",
-    subtitle: "Voltage Protection",
-    description:
-      "Protect your valuable appliances from voltage fluctuations with reliable stabilizers.",
-  },
-
-  inverters: {
-    title: "INVERTERS",
-    subtitle: "Reliable Power",
-    description:
-      "Reliable backup power solutions for homes, offices and businesses.",
-  },
-
-  ups: {
-    title: "UPS",
-    subtitle: "Backup Power",
-    description:
-      "Uninterrupted power solutions for computers, electronics and critical equipment.",
-  },
-
-  batteries: {
-    title: "BATTERIES",
-    subtitle: "Long Lasting Energy",
-    description:
-      "Powerful batteries designed for dependable backup and long service life.",
-  },
-
-  "inverter-trolleys": {
-    title: "INVERTER TROLLEYS",
-    subtitle: "Complete Power Setup",
-    description:
-      "Convenient inverter and battery trolley solutions for your home or business.",
-  },
-
-  "ac-&-fridge-stands": {
-    title: "AC & FRIDGE STANDS",
-    subtitle: "Strong. Simple. Reliable.",
-    description:
-      "Strong and durable stands designed for ACs, refrigerators and other appliances.",
-  },
+type Product = {
+  id: string;
+  kva: string;
+  voltage: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  clamp?: {
+    name: string;
+    price: number;
+  };
 };
 
-export default function CategoryPage() {
+const stabilizers: Product[] = [
+  {
+    id: "stb-05kva-90v",
+    kva: "0.5 KVA",
+    voltage: "90V A/M",
+    title: "0.5 KVA 90V A/M STABILIZER",
+    description:
+      "Compact voltage protection solution for suitable home appliances.",
+    price: 0,
+    image: "/products/stabilizers/0.5kva-90v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-1kva-50v",
+    kva: "1 KVA",
+    voltage: "50V A/M",
+    title: "1 KVA 50V A/M STABILIZER",
+    description:
+      "Reliable voltage protection for appliances requiring stable power.",
+    price: 0,
+    image: "/products/stabilizers/1kva-50v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-1kva-90v",
+    kva: "1 KVA",
+    voltage: "90V A/M",
+    title: "1 KVA 90V A/M STABILIZER",
+    description:
+      "Dependable voltage regulation for home and commercial applications.",
+    price: 0,
+    image: "/products/stabilizers/1kva-90v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-2kva-50v",
+    kva: "2 KVA",
+    voltage: "50V A/M",
+    title: "2 KVA 50V A/M STABILIZER",
+    description:
+      "Higher-capacity voltage protection for larger appliances.",
+    price: 0,
+    image: "/products/stabilizers/2kva-50v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-3kva-50v",
+    kva: "3 KVA",
+    voltage: "50V",
+    title: "3 KVA 50V STABILIZER",
+    description:
+      "Powerful voltage regulation designed for demanding applications.",
+    price: 0,
+    image: "/products/stabilizers/3kva-50v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-3kva-90v",
+    kva: "3 KVA",
+    voltage: "90V",
+    title: "3 KVA 90V STABILIZER",
+    description:
+      "Reliable protection against voltage fluctuations.",
+    price: 0,
+    image: "/products/stabilizers/3kva-90v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-4kva-140v",
+    kva: "4 KVA",
+    voltage: "140V",
+    title: "4 KVA 140V STABILIZER",
+    description:
+      "Heavy-duty voltage regulation for larger electrical loads.",
+    price: 0,
+    image: "/products/stabilizers/4kva-140v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-4kva-130v",
+    kva: "4 KVA",
+    voltage: "130V",
+    title: "4 KVA 130V STABILIZER",
+    description:
+      "Stable and dependable power protection for demanding applications.",
+    price: 0,
+    image: "/products/stabilizers/4kva-130v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-4kva-50v",
+    kva: "4 KVA",
+    voltage: "50V",
+    title: "4 KVA 50V STABILIZER",
+    description:
+      "High-capacity voltage stabilization for electrical equipment.",
+    price: 0,
+    image: "/products/stabilizers/4kva-50v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-4kva-90v",
+    kva: "4 KVA",
+    voltage: "90V",
+    title: "4 KVA 90V STABILIZER",
+    description:
+      "Powerful voltage protection for home and commercial use.",
+    price: 0,
+    image: "/products/stabilizers/4kva-90v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-5kva-50v",
+    kva: "5 KVA",
+    voltage: "50V",
+    title: "5 KVA 50V STABILIZER",
+    description:
+      "Heavy-duty stabilizer designed for high-power applications.",
+    price: 0,
+    image: "/products/stabilizers/5kva-50v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+
+  {
+    id: "stb-5kva-90v",
+    kva: "5 KVA",
+    voltage: "90V",
+    title: "5 KVA 90V STABILIZER",
+    description:
+      "High-capacity voltage protection for demanding electrical systems.",
+    price: 0,
+    image: "/products/stabilizers/5kva-90v.jpg",
+    clamp: {
+      name: "Wall Mount Clamp",
+      price: 0,
+    },
+  },
+];
+
+const categoryNames: Record<string, string> = {
+  stabilizers: "STABILIZERS",
+  inverters: "INVERTERS",
+  ups: "UPS",
+  batteries: "BATTERIES",
+  "inverter-trolleys": "INVERTER TROLLEYS",
+  "ac-&-fridge-stands": "AC & FRIDGE STANDS",
+};
+
+export default function ProductCategoryPage() {
   const params = useParams();
 
-  const category = String(params.category).toLowerCase();
+  const category =
+    typeof params.category === "string"
+      ? params.category
+      : "";
 
-  const product = productData[category];
+  const categoryTitle =
+    categoryNames[category] || "PRODUCTS";
 
-  if (!product) {
-    return (
-      <main
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#050510",
-          color: "white",
-          fontFamily: "Arial, sans-serif",
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <h1>PRODUCT CATEGORY NOT FOUND</h1>
-          <a
-            href="/"
-            style={{
-              color: "#00ffff",
-              textDecoration: "none",
-            }}
-          >
-            ← Back to Home
-          </a>
-        </div>
-      </main>
-    );
-  }
+  const products =
+    category === "stabilizers"
+      ? stabilizers
+      : [];
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background:
-          "radial-gradient(circle at top, #17102d 0%, #050510 45%, #020207 100%)",
-        color: "white",
-        padding: "40px 6%",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      {/* NAVIGATION */}
+    <main className={styles.page}>
 
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "100px",
-        }}
-      >
-        <a
-          href="/"
-          style={{
-            color: "white",
-            textDecoration: "none",
-            fontWeight: "bold",
-            fontSize: "20px",
-          }}
-        >
-          ⚡ TEWARI ENTERPRISE
-        </a>
+      {/* ================= NAVBAR ================= */}
 
-        <a
-          href="/"
-          style={{
-            color: "#00ffff",
-            textDecoration: "none",
-          }}
-        >
-          ← HOME
-        </a>
+      <nav className={styles.navbar}>
+
+        <Link href="/" className={styles.logo}>
+          <span>⚡</span>
+
+          <div>
+            <strong>TEWARI</strong>
+            <small>ENTERPRISE</small>
+          </div>
+        </Link>
+
+        <div className={styles.navLinks}>
+          <Link href="/">HOME</Link>
+          <Link href="/#catalog">CATALOG</Link>
+          <Link href="/#wholesale">WHOLESALE</Link>
+        </div>
+
+        <div className={styles.navActions}>
+          <Link href="/login">LOGIN</Link>
+          <Link href="/signup">SIGN UP</Link>
+
+          <Link href="/cart" className={styles.cart}>
+            🛒
+          </Link>
+        </div>
+
       </nav>
 
-      {/* HEADER */}
 
-      <section
-        style={{
-          maxWidth: "900px",
-          marginBottom: "70px",
-        }}
-      >
-        <p
-          style={{
-            color: "#00ffff",
-            letterSpacing: "4px",
-            fontSize: "13px",
-          }}
-        >
-          TEWARI ENTERPRISE / CATALOG
-        </p>
+      {/* ================= HEADER ================= */}
 
-        <h1
-          style={{
-            fontSize: "clamp(45px, 8vw, 100px)",
-            lineHeight: "0.95",
-            margin: "20px 0",
-          }}
+      <section className={styles.header}>
+
+        <Link
+          href="/#catalog"
+          className={styles.back}
         >
-          {product.title}
+          ← BACK TO CATALOG
+        </Link>
+
+        <div className={styles.headerTag}>
+          01 / PRODUCT CATALOG
+        </div>
+
+        <h1>
+          {categoryTitle}
+          <span>.</span>
         </h1>
 
-        <h2
-          style={{
-            color: "#ff4fc3",
-            fontSize: "24px",
-          }}
-        >
-          {product.subtitle}
-        </h2>
-
-        <p
-          style={{
-            maxWidth: "650px",
-            color: "#aaa",
-            fontSize: "18px",
-            lineHeight: "1.7",
-          }}
-        >
-          {product.description}
+        <p>
+          Explore our range of reliable power protection
+          and backup solutions.
         </p>
+
+        {category === "stabilizers" && (
+          <div className={styles.productCount}>
+            {products.length} MODELS AVAILABLE
+          </div>
+        )}
+
       </section>
 
-      {/* PRODUCTS */}
 
-      <section>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: "25px",
-          }}
-        >
-          {[1, 2, 3].map((item) => (
-            <div
-              key={item}
-              style={{
-                border: "1px solid rgba(0,255,255,0.25)",
-                borderRadius: "20px",
-                padding: "25px",
-                background: "rgba(255,255,255,0.03)",
-              }}
-            >
-              {/* IMAGE PLACEHOLDER */}
+      {/* ================= PRODUCTS ================= */}
 
-              <div
-                style={{
-                  height: "230px",
-                  borderRadius: "15px",
-                  background:
-                    "linear-gradient(135deg, rgba(0,255,255,0.12), rgba(255,0,150,0.12))",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "50px",
-                  marginBottom: "25px",
-                }}
+      {products.length > 0 ? (
+
+        <section className={styles.productsSection}>
+
+          <div className={styles.productGrid}>
+
+            {products.map((product, index) => (
+
+              <article
+                className={styles.productCard}
+                key={product.id}
               >
-                ⚡
-              </div>
 
-              <p
-                style={{
-                  color: "#00ffff",
-                  fontSize: "12px",
-                  letterSpacing: "2px",
-                }}
-              >
-                TEWARI ENTERPRISE
-              </p>
+                {/* Number */}
+                <div className={styles.productNumber}>
+                  {String(index + 1).padStart(2, "0")}
+                </div>
 
-              <h3>
-                {product.title} MODEL {item}
-              </h3>
 
-              <p
-                style={{
-                  color: "#999",
-                  lineHeight: "1.5",
-                }}
-              >
-                Product description and specifications will appear
-                here.
-              </p>
+                {/* Image */}
+                <div className={styles.imageBox}>
 
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "25px",
-                }}
-              >
-                <strong>₹ PRICE</strong>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className={styles.productImage}
+                  />
 
-                <button
-                  style={{
-                    background: "#00ffff",
-                    border: "none",
-                    padding: "12px 18px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                  }}
-                >
-                  ADD TO CART
-                </button>
-              </div>
-            </div>
-          ))}
+                  <div className={styles.imageGlow} />
+
+                </div>
+
+
+                {/* Product information */}
+                <div className={styles.productInfo}>
+
+                  <div className={styles.specs}>
+
+                    <span>
+                      {product.kva}
+                    </span>
+
+                    <span>
+                      {product.voltage}
+                    </span>
+
+                  </div>
+
+                  <h2>
+                    {product.title}
+                  </h2>
+
+                  <p>
+                    {product.description}
+                  </p>
+
+
+                  {/* Price */}
+                  <div className={styles.priceArea}>
+
+                    <span>
+                      RETAIL PRICE
+                    </span>
+
+                    {product.price > 0 ? (
+                      <strong>
+                        ₹{product.price.toLocaleString("en-IN")}
+                      </strong>
+                    ) : (
+                      <strong className={styles.contactPrice}>
+                        CONTACT FOR PRICE
+                      </strong>
+                    )}
+
+                  </div>
+
+
+                  {/* Clamp */}
+                  {product.clamp && (
+
+                    <div className={styles.accessory}>
+
+                      <div>
+                        <span>
+                          OPTIONAL ACCESSORY
+                        </span>
+
+                        <strong>
+                          🔩 {product.clamp.name}
+                        </strong>
+                      </div>
+
+                      <button type="button">
+                        ADD
+                      </button>
+
+                    </div>
+
+                  )}
+
+
+                  {/* Buttons */}
+                  <div className={styles.buttons}>
+
+                    <Link
+  href={`/products/${category}/${product.id}`}
+  className={styles.detailsButton}
+>
+  VIEW DETAILS
+</Link>
+
+                    <button
+                      type="button"
+                      className={styles.cartButton}
+                    >
+                      ADD TO CART
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+
+        </section>
+
+      ) : (
+
+        /* ================= EMPTY CATEGORY ================= */
+
+        <section className={styles.empty}>
+
+          <div className={styles.emptyIcon}>
+            ⚡
+          </div>
+
+          <h2>
+            PRODUCTS COMING SOON
+          </h2>
+
+          <p>
+            We're currently preparing this category.
+            Check back soon for our latest products.
+          </p>
+
+          <Link
+            href="/#catalog"
+            className={styles.catalogButton}
+          >
+            BACK TO CATALOG →
+          </Link>
+
+        </section>
+
+      )}
+
+
+      {/* ================= FOOTER ================= */}
+
+      <footer className={styles.footer}>
+
+        <div>
+          ⚡ TEWARI ENTERPRISE
         </div>
-      </section>
+
+        <span>
+          POWER • PROTECTION • PERFORMANCE
+        </span>
+
+        <small>
+          © 2026 Tewari Enterprise
+        </small>
+
+      </footer>
+
     </main>
   );
 }

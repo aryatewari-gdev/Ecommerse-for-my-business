@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const categories = [
   {
@@ -42,20 +43,33 @@ const categories = [
 ];
 
 export default function Home() {
-  const [entered, setEntered] = useState(false);
+  const [entered, setEntered] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
 
-  // Always start the homepage at the very top
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const introPlayed = sessionStorage.getItem(
+      "tewari-intro-played"
+    );
 
-  // Entrance animation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setEntered(true);
-    }, 3500);
+    if (!introPlayed) {
+      setShowIntro(true);
+      setEntered(false);
 
-    return () => clearTimeout(timer);
+      sessionStorage.setItem(
+        "tewari-intro-played",
+        "true"
+      );
+
+      const timer = setTimeout(() => {
+        setEntered(true);
+        setShowIntro(false);
+      }, 3500);
+
+      return () => clearTimeout(timer);
+    }
+
+    setShowIntro(false);
+    setEntered(true);
   }, []);
 
   return (
@@ -63,122 +77,179 @@ export default function Home() {
 
       {/* ================= INTRO ================= */}
 
-      <section className="intro">
-        <div className="stars" />
+      {showIntro && (
+        <section className="intro">
 
-        <div className="moon" />
+          <div className="stars" />
 
-        <div className="petals">
-          <span>🌸</span>
-          <span>🌸</span>
-          <span>🌸</span>
-          <span>🌸</span>
-          <span>🌸</span>
-          <span>🌸</span>
-          <span>🌸</span>
-          <span>🌸</span>
-        </div>
+          <div className="moon" />
 
-        <div className="intro-content">
-          <p className="intro-small">WELCOME TO</p>
+          <div className="petals">
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌸</span>
+            <span>🌸</span>
+          </div>
 
-          <h1>TEWARI</h1>
+          <div className="intro-content">
 
-          <h2>ENTERPRISE</h2>
+            <p className="intro-small">
+              WELCOME TO
+            </p>
 
-          <div className="intro-line" />
+            <h1>
+              TEWARI
+            </h1>
 
-          <p>POWER • PROTECTION • PERFORMANCE</p>
-        </div>
+            <h2>
+              ENTERPRISE
+            </h2>
 
-        {/* Japanese Gate */}
+            <div className="intro-line" />
 
-        <div className="torii">
-          <div className="torii-top" />
-          <div className="torii-top-glow" />
+            <p>
+              POWER • PROTECTION • PERFORMANCE
+            </p>
 
-          <div className="torii-pillar left" />
-          <div className="torii-pillar right" />
+          </div>
 
-          <div className="torii-cross" />
+          <div className="torii">
 
-          <div className="torii-inner-glow" />
-        </div>
+            <div className="torii-top" />
+            <div className="torii-top-glow" />
+            <div className="torii-pillar left" />
+            <div className="torii-pillar right" />
+            <div className="torii-cross" />
+            <div className="torii-inner-glow" />
 
-        <div className="ground" />
+          </div>
 
-        <div className="enter-text">
-          ENTERING TEWARI ENTERPRISE
-          <span>SCROLL TO EXPLORE</span>
-        </div>
-      </section>
+          <div className="ground" />
 
+          <div className="enter-text">
+
+            ENTERING TEWARI ENTERPRISE
+
+            <span>
+              SCROLL TO EXPLORE
+            </span>
+
+          </div>
+
+        </section>
+      )}
 
       {/* ================= NAVBAR ================= */}
 
       <nav className="navbar">
 
-        <div className="logo">
-          <span className="logo-symbol">⚡</span>
+        <Link href="/" className="logo">
+
+          <span className="logo-symbol">
+            ⚡
+          </span>
 
           <div>
-            <strong>TEWARI</strong>
-            <small>ENTERPRISE</small>
-          </div>
-        </div>
+            <strong>
+              TEWARI
+            </strong>
 
+            <small>
+              ENTERPRISE
+            </small>
+          </div>
+
+        </Link>
 
         <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#catalog">Catalog</a>
-          <a href="#wholesale">Wholesale</a>
-          <a href="#contact">Contact</a>
+
+          <Link href="/">
+            Home
+          </Link>
+
+          <a href="#catalog">
+            Catalog
+          </a>
+
+          <a href="#wholesale">
+            Wholesale
+          </a>
+
+          <a href="#contact">
+            Contact
+          </a>
+
         </div>
 
+        {/* ================= ACCOUNT BUTTONS ================= */}
 
         <div className="nav-actions">
-          <button className="login">
+
+          <Link
+            href="/login"
+            className="login"
+          >
             LOGIN
-          </button>
+          </Link>
 
-          <button className="signup">
+          <Link
+            href="/signup"
+            className="signup"
+          >
             SIGN UP
-          </button>
+          </Link>
 
-          <button className="cart">
+          <Link
+            href="/cart"
+            className="cart"
+          >
             🛒
-          </button>
+          </Link>
+
         </div>
 
       </nav>
 
-
       {/* ================= HERO ================= */}
 
-      <section id="home" className="hero">
+      <section
+        id="home"
+        className="hero"
+      >
 
         <div className="hero-grid" />
 
         <div className="hero-text">
 
           <div className="tag">
+
             <span />
+
             POWER SOLUTIONS • EST. 2000
+
           </div>
 
-
           <h1>
+
             POWER YOUR
+
             <br />
-            <span>WORLD.</span>
+
+            <span>
+              WORLD.
+            </span>
+
           </h1>
 
-
           <p>
-            Premium stabilizers, inverters, UPS systems and batteries
-            for homes, businesses and industries.
+            Premium stabilizers, inverters,
+            UPS systems and batteries for
+            homes, businesses and industries.
           </p>
-
 
           <div className="hero-buttons">
 
@@ -188,7 +259,6 @@ export default function Home() {
             >
               EXPLORE CATALOG →
             </a>
-
 
             <a
               href="#wholesale"
@@ -200,9 +270,6 @@ export default function Home() {
           </div>
 
         </div>
-
-
-        {/* Power Orb */}
 
         <div className="hero-orb">
 
@@ -216,17 +283,17 @@ export default function Home() {
 
         </div>
 
-
         <div className="scroll-indicator">
 
-          <span>SCROLL</span>
+          <span>
+            SCROLL
+          </span>
 
           <div />
 
         </div>
 
       </section>
-
 
       {/* ================= CATALOG ================= */}
 
@@ -244,72 +311,74 @@ export default function Home() {
             </span>
 
             <h2>
+
               CHOOSE YOUR
+
               <br />
-              <span>POWER.</span>
+
+              <span>
+                POWER.
+              </span>
+
             </h2>
 
           </div>
 
-
           <p>
-            Explore our range of trusted power protection
-            and backup solutions.
+            Explore our range of trusted
+            power protection and backup
+            solutions.
           </p>
 
         </div>
 
-
         <div className="category-grid">
 
-          {categories.map((category, index) => (
+          {categories.map(
+            (category, index) => (
 
-            <a
-              href={`/products/${category.name
-                .toLowerCase()
-                .replaceAll(" ", "-")}`}
-              className={`category-card ${category.color}`}
-              key={category.name}
-            >
+              <Link
+                href={`/products/${category.name
+                  .toLowerCase()
+                  .replaceAll(" ", "-")}`}
+                className={`category-card ${category.color}`}
+                key={category.name}
+              >
 
-              <div className="card-number">
-                0{index + 1}
-              </div>
+                <div className="card-number">
+                  0{index + 1}
+                </div>
 
+                <div className="category-icon">
+                  {category.icon}
+                </div>
 
-              <div className="category-icon">
-                {category.icon}
-              </div>
+                <div className="category-info">
 
+                  <span>
+                    {category.subtitle}
+                  </span>
 
-              <div className="category-info">
+                  <h3>
+                    {category.name}
+                  </h3>
 
-                <span>
-                  {category.subtitle}
-                </span>
+                </div>
 
-                <h3>
-                  {category.name}
-                </h3>
+                <div className="card-arrow">
+                  ↗
+                </div>
 
-              </div>
+                <div className="card-glow" />
 
+              </Link>
 
-              <div className="card-arrow">
-                ↗
-              </div>
-
-
-              <div className="card-glow" />
-
-            </a>
-
-          ))}
+            )
+          )}
 
         </div>
 
       </section>
-
 
       {/* ================= WHOLESALE ================= */}
 
@@ -320,34 +389,36 @@ export default function Home() {
 
         <div className="wholesale-glow" />
 
-
         <div className="wholesale-content">
 
           <span className="section-tag">
             02 / BUSINESS
           </span>
 
-
           <h2>
-            BUY
-            <br />
-            <span>WHOLESALE.</span>
-          </h2>
 
+            BUY
+
+            <br />
+
+            <span>
+              WHOLESALE.
+            </span>
+
+          </h2>
 
           <p>
             Looking for bulk quantities?
-            Get special wholesale pricing for retailers,
-            dealers, contractors and businesses.
+            Get special wholesale pricing
+            for retailers, dealers,
+            contractors and businesses.
           </p>
-
 
           <button className="primary-btn">
             REQUEST WHOLESALE PRICE →
           </button>
 
         </div>
-
 
         <div className="wholesale-box">
 
@@ -369,7 +440,6 @@ export default function Home() {
 
       </section>
 
-
       {/* ================= FEATURES ================= */}
 
       <section className="features">
@@ -383,11 +453,11 @@ export default function Home() {
           </h3>
 
           <p>
-            Quality products from trusted brands.
+            Quality products from
+            trusted brands.
           </p>
 
         </div>
-
 
         <div className="feature">
 
@@ -398,11 +468,11 @@ export default function Home() {
           </h3>
 
           <p>
-            Competitive pricing for everyone.
+            Competitive pricing
+            for everyone.
           </p>
 
         </div>
-
 
         <div className="feature">
 
@@ -413,11 +483,11 @@ export default function Home() {
           </h3>
 
           <p>
-            Get help choosing the right solution.
+            Get help choosing the
+            right solution.
           </p>
 
         </div>
-
 
         <div className="feature">
 
@@ -428,13 +498,13 @@ export default function Home() {
           </h3>
 
           <p>
-            Find products and place orders easily.
+            Find products and
+            place orders easily.
           </p>
 
         </div>
 
       </section>
-
 
       {/* ================= FOOTER ================= */}
 
@@ -444,17 +514,16 @@ export default function Home() {
           ⚡ TEWARI ENTERPRISE
         </div>
 
-
         <p>
-          Powering homes, businesses and everything in between.
+          Powering homes, businesses
+          and everything in between.
         </p>
-
 
         <div className="footer-links">
 
-          <a href="#home">
+          <Link href="/">
             Home
-          </a>
+          </Link>
 
           <a href="#catalog">
             Products
@@ -470,9 +539,11 @@ export default function Home() {
 
         </div>
 
-
         <div className="copyright">
-          © 2026 Tewari Enterprise. All rights reserved.
+
+          © 2026 Tewari Enterprise.
+          All rights reserved.
+
         </div>
 
       </footer>
