@@ -5,8 +5,6 @@
 }
 
 
-/* ================= NAVBAR ================= */
-
 .navbar {
   height: 80px;
   padding: 0 6%;
@@ -72,8 +70,6 @@
 }
 
 
-/* ================= CART PAGE ================= */
-
 .cartPage {
   width: min(1400px, 90%);
   margin: auto;
@@ -104,8 +100,6 @@
   line-height: 1.7;
 }
 
-
-/* ================= EMPTY ================= */
 
 .emptyCart {
   margin-top: 70px;
@@ -141,8 +135,6 @@
 }
 
 
-/* ================= CART LAYOUT ================= */
-
 .cartLayout {
   margin-top: 70px;
   display: grid;
@@ -177,8 +169,6 @@
   font-weight: 800;
 }
 
-
-/* ================= ITEM ================= */
 
 .cartItem {
   display: grid;
@@ -237,8 +227,6 @@
 }
 
 
-/* ================= QUANTITY ================= */
-
 .quantityBox > span {
   display: block;
   margin-bottom: 8px;
@@ -274,8 +262,6 @@
 }
 
 
-/* ================= PRICE ================= */
-
 .itemPrice {
   text-align: right;
 }
@@ -297,8 +283,6 @@
   letter-spacing: 1px;
 }
 
-
-/* ================= SUMMARY ================= */
 
 .summary {
   height: max-content;
@@ -383,8 +367,6 @@
 }
 
 
-/* ================= FOOTER ================= */
-
 .footer {
   padding: 60px 6%;
   margin-top: 50px;
@@ -409,8 +391,6 @@
   color: #777;
 }
 
-
-/* ================= MOBILE ================= */
 
 @media (max-width: 900px) {
 

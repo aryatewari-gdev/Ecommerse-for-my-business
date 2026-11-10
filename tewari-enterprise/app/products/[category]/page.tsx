@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import styles from "./page.module.css";
@@ -228,7 +228,6 @@ export default function ProductCategoryPage() {
   return (
     <main className={styles.page}>
 
-      {/* ================= NAVBAR ================= */}
 
       <nav className={styles.navbar}>
 
@@ -258,8 +257,6 @@ export default function ProductCategoryPage() {
 
       </nav>
 
-
-      {/* ================= HEADER ================= */}
 
       <section className={styles.header}>
 
@@ -293,8 +290,6 @@ export default function ProductCategoryPage() {
       </section>
 
 
-      {/* ================= PRODUCTS ================= */}
-
       {products.length > 0 ? (
 
         <section className={styles.productsSection}>
@@ -308,18 +303,20 @@ export default function ProductCategoryPage() {
                 key={product.id}
               >
 
-                {/* Number */}
+                
                 <div className={styles.productNumber}>
                   {String(index + 1).padStart(2, "0")}
                 </div>
 
 
-                {/* Image */}
+            
                 <div className={styles.imageBox}>
 
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.title}
+                    width={500}
+                    height={500}
                     className={styles.productImage}
                   />
 
@@ -328,7 +325,7 @@ export default function ProductCategoryPage() {
                 </div>
 
 
-                {/* Product information */}
+              
                 <div className={styles.productInfo}>
 
                   <div className={styles.specs}>
@@ -352,7 +349,7 @@ export default function ProductCategoryPage() {
                   </p>
 
 
-                  {/* Price */}
+                 
                   <div className={styles.priceArea}>
 
                     <span>
@@ -372,7 +369,7 @@ export default function ProductCategoryPage() {
                   </div>
 
 
-                  {/* Clamp */}
+                
                   {product.clamp && (
 
                     <div className={styles.accessory}>
@@ -396,7 +393,7 @@ export default function ProductCategoryPage() {
                   )}
 
 
-                  {/* Buttons */}
+                
                   <div className={styles.buttons}>
 
                     <Link
@@ -427,7 +424,6 @@ export default function ProductCategoryPage() {
 
       ) : (
 
-        /* ================= EMPTY CATEGORY ================= */
 
         <section className={styles.empty}>
 
@@ -440,7 +436,7 @@ export default function ProductCategoryPage() {
           </h2>
 
           <p>
-            We're currently preparing this category.
+            We&apos;re currently preparing this category.
             Check back soon for our latest products.
           </p>
 
@@ -455,8 +451,6 @@ export default function ProductCategoryPage() {
 
       )}
 
-
-      {/* ================= FOOTER ================= */}
 
       <footer className={styles.footer}>
 

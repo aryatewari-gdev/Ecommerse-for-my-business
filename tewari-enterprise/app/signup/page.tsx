@@ -7,11 +7,11 @@ export default function SignupPage() {
   return (
     <main className={styles.authPage}>
 
-      {/* Background */}
+   
       <div className={styles.backgroundGlow} />
       <div className={styles.grid} />
 
-      {/* Logo */}
+     
       <Link href="/" className={styles.logo}>
         <span className={styles.logoSymbol}>⚡</span>
 
@@ -21,7 +21,7 @@ export default function SignupPage() {
         </div>
       </Link>
 
-      {/* Signup Card */}
+   
       <div className={styles.authCard}>
 
         <div className={styles.cardTop}>
@@ -39,7 +39,7 @@ export default function SignupPage() {
 
         <form className={styles.form}>
 
-          {/* Name */}
+       
           <label>
             FULL NAME
 
@@ -50,7 +50,7 @@ export default function SignupPage() {
             />
           </label>
 
-          {/* Email */}
+       
           <label>
             EMAIL ADDRESS
 
@@ -61,7 +61,6 @@ export default function SignupPage() {
             />
           </label>
 
-          {/* Phone */}
           <label>
             PHONE NUMBER
 
@@ -72,7 +71,7 @@ export default function SignupPage() {
             />
           </label>
 
-          {/* Password */}
+       
           <label>
             PASSWORD
 
@@ -83,7 +82,7 @@ export default function SignupPage() {
             />
           </label>
 
-          {/* Confirm Password */}
+         
           <label>
             CONFIRM PASSWORD
 
@@ -94,7 +93,7 @@ export default function SignupPage() {
             />
           </label>
 
-          {/* Terms */}
+        
           <label className={styles.terms}>
 
             <input
@@ -108,7 +107,7 @@ export default function SignupPage() {
 
           </label>
 
-          {/* Signup */}
+      
           <button
             type="submit"
             className={styles.submitButton}
@@ -118,14 +117,14 @@ export default function SignupPage() {
 
         </form>
 
-        {/* Divider */}
+     
         <div className={styles.divider}>
           <span />
           OR
           <span />
         </div>
 
-        {/* Login */}
+    
         <p className={styles.switchText}>
           Already have an account?{" "}
 
@@ -136,7 +135,6 @@ export default function SignupPage() {
 
       </div>
 
-      {/* Bottom text */}
       <p className={styles.footerText}>
         POWER • PROTECTION • PERFORMANCE
       </p>

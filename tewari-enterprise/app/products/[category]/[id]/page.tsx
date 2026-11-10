@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState } from "react";
@@ -24,9 +24,6 @@ export default function ProductDetailsPage() {
   const [quantity, setQuantity] = useState(1);
   const [addClamp, setAddClamp] = useState(false);
 
-  /* =====================================================
-     PRODUCT NOT FOUND
-     ===================================================== */
 
   if (!product) {
     return (
@@ -67,7 +64,7 @@ export default function ProductDetailsPage() {
           <h1>PRODUCT NOT FOUND</h1>
 
           <p>
-            The product you're looking for doesn't
+            The product you&apos;re looking for doesn&apos;t
             exist or may have been moved.
           </p>
 
@@ -82,9 +79,6 @@ export default function ProductDetailsPage() {
     );
   }
 
-  /* =====================================================
-     PRICE CALCULATIONS
-     ===================================================== */
 
   const productTotal =
     product.price * quantity;
@@ -97,11 +91,10 @@ export default function ProductDetailsPage() {
   const total =
     productTotal + clampTotal;
 
-  /* =====================================================
-     ADD TO CART
-     ===================================================== */
 
  function handleAddToCart() {
+  if (!product) return;
+
   addToCart(
     product,
     quantity,
@@ -109,16 +102,10 @@ export default function ProductDetailsPage() {
   );
 }
 
-  /* =====================================================
-     MAIN PAGE
-     ===================================================== */
 
   return (
     <main className={styles.page}>
 
-      {/* =================================================
-          NAVBAR
-          ================================================= */}
 
       <nav className={styles.navbar}>
 
@@ -174,13 +161,8 @@ export default function ProductDetailsPage() {
       </nav>
 
 
-      {/* =================================================
-          PRODUCT SECTION
-          ================================================= */}
-
       <section className={styles.productPage}>
 
-        {/* BACK BUTTON */}
 
         <Link
           href="/products/stabilizers"
@@ -192,9 +174,6 @@ export default function ProductDetailsPage() {
 
         <div className={styles.productLayout}>
 
-          {/* =================================================
-              PRODUCT IMAGE
-              ================================================= */}
 
           <div className={styles.imageSection}>
 
@@ -207,31 +186,30 @@ export default function ProductDetailsPage() {
 
               <div className={styles.glow} />
 
-              <img
-                src={product.image}
-                alt={product.title}
-                className={styles.productImage}
-              />
+             <Image
+  src={product.image}
+  alt={product.title}
+  width={600}
+  height={600}
+  className={styles.productImage}
+/>
 
             </div>
 
           </div>
 
 
-          {/* =================================================
-              PRODUCT DETAILS
-              ================================================= */}
 
           <div className={styles.details}>
 
-            {/* CATEGORY */}
+          
 
             <div className={styles.tag}>
               {product.category.toUpperCase()} / PRODUCT
             </div>
 
 
-            {/* SPECS */}
+          
 
             <div className={styles.specs}>
 
@@ -246,14 +224,14 @@ export default function ProductDetailsPage() {
             </div>
 
 
-            {/* TITLE */}
+        
 
             <h1>
               {product.title}
             </h1>
 
 
-            {/* DESCRIPTION */}
+           
 
             <p className={styles.description}>
               {product.description}
@@ -263,9 +241,6 @@ export default function ProductDetailsPage() {
             <div className={styles.divider} />
 
 
-            {/* =================================================
-                PRICE
-                ================================================= */}
 
             <div className={styles.priceSection}>
 
@@ -297,9 +272,6 @@ export default function ProductDetailsPage() {
             </div>
 
 
-            {/* =================================================
-                QUANTITY
-                ================================================= */}
 
             <div className={styles.optionSection}>
 
@@ -345,10 +317,6 @@ export default function ProductDetailsPage() {
 
             </div>
 
-
-            {/* =================================================
-                OPTIONAL WALL CLAMP
-                ================================================= */}
 
             {product.clamp && (
 
@@ -416,10 +384,6 @@ export default function ProductDetailsPage() {
             )}
 
 
-            {/* =================================================
-                TOTAL
-                ================================================= */}
-
             <div className={styles.total}>
 
               <span>
@@ -446,10 +410,6 @@ export default function ProductDetailsPage() {
 
             </div>
 
-
-            {/* =================================================
-                ACTION BUTTONS
-                ================================================= */}
 
             <div className={styles.actions}>
 
@@ -482,10 +442,6 @@ export default function ProductDetailsPage() {
 
             </div>
 
-
-            {/* =================================================
-                INFORMATION
-                ================================================= */}
 
             <div className={styles.infoGrid}>
 
@@ -550,10 +506,6 @@ export default function ProductDetailsPage() {
 
       </section>
 
-
-      {/* =================================================
-          FOOTER
-          ================================================= */}
 
       <footer className={styles.footer}>
 

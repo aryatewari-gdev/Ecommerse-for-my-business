@@ -46,7 +46,7 @@ export default function Catalog() {
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900">
 
-      {/* HEADER */}
+      
       <section className="bg-white px-6 py-20">
 
         <div className="mx-auto max-w-7xl">
@@ -84,7 +84,7 @@ export default function Catalog() {
       </section>
 
 
-      {/* PRODUCTS */}
+      
       <section className="px-6 py-16">
 
         <div className="mx-auto max-w-7xl">
@@ -105,7 +105,7 @@ export default function Catalog() {
                 className="overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-xl"
               >
 
-                {/* IMAGE PLACEHOLDER */}
+                
                 <div className="flex h-56 items-center justify-center bg-gray-100 text-7xl">
                   {product.icon}
                 </div>

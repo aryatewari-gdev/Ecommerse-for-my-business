@@ -7,11 +7,11 @@ export default function LoginPage() {
   return (
     <main className={styles.authPage}>
 
-      {/* Background */}
+      
       <div className={styles.backgroundGlow} />
       <div className={styles.grid} />
 
-      {/* Logo */}
+      
       <Link href="/" className={styles.logo}>
         <span className={styles.logoSymbol}>⚡</span>
 
@@ -21,7 +21,7 @@ export default function LoginPage() {
         </div>
       </Link>
 
-      {/* Login Card */}
+      
       <div className={styles.authCard}>
 
         <div className={styles.cardTop}>
@@ -39,7 +39,7 @@ export default function LoginPage() {
 
         <form className={styles.form}>
 
-          {/* Email */}
+        
           <label>
             EMAIL ADDRESS
 
@@ -50,7 +50,7 @@ export default function LoginPage() {
             />
           </label>
 
-          {/* Password */}
+      
           <label>
             PASSWORD
 
@@ -61,7 +61,7 @@ export default function LoginPage() {
             />
           </label>
 
-          {/* Options */}
+          
           <div className={styles.formOptions}>
 
             <label className={styles.remember}>
@@ -78,7 +78,7 @@ export default function LoginPage() {
 
           </div>
 
-          {/* Login */}
+          
           <button
             type="submit"
             className={styles.submitButton}
@@ -88,16 +88,16 @@ export default function LoginPage() {
 
         </form>
 
-        {/* Divider */}
+      
         <div className={styles.divider}>
           <span />
           OR
           <span />
         </div>
 
-        {/* Signup */}
+     
         <p className={styles.switchText}>
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
 
           <Link href="/signup">
             CREATE ACCOUNT
@@ -106,7 +106,7 @@ export default function LoginPage() {
 
       </div>
 
-      {/* Bottom text */}
+    
       <p className={styles.footerText}>
         POWER • PROTECTION • PERFORMANCE
       </p>

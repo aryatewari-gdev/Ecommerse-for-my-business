@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "./CartContext";
 import styles from "./cart.module.css";
@@ -16,7 +16,6 @@ export default function CartPage() {
   return (
     <main className={styles.page}>
 
-      {/* ================= NAVBAR ================= */}
 
       <nav className={styles.navbar}>
 
@@ -47,7 +46,6 @@ export default function CartPage() {
       </nav>
 
 
-      {/* ================= CART ================= */}
 
       <section className={styles.cartPage}>
 
@@ -69,7 +67,6 @@ export default function CartPage() {
         </div>
 
 
-        {/* ================= EMPTY CART ================= */}
 
         {items.length === 0 ? (
 
@@ -84,7 +81,7 @@ export default function CartPage() {
             </h2>
 
             <p>
-              You haven't added any products yet.
+              You haven&apos;t added any products yet.
             </p>
 
             <Link
@@ -98,11 +95,11 @@ export default function CartPage() {
 
         ) : (
 
-          /* ================= CART WITH ITEMS ================= */
+          
 
           <div className={styles.cartLayout}>
 
-            {/* ================= ITEMS ================= */}
+            
 
             <div className={styles.items}>
 
@@ -146,19 +143,21 @@ export default function CartPage() {
                     key={`${item.product.id}-${item.addClamp}`}
                   >
 
-                    {/* IMAGE */}
+                  
 
                     <div className={styles.imageBox}>
 
-                      <img
+                      <Image
                         src={item.product.image}
                         alt={item.product.title}
+                        width={300}
+                        height={300}
+                        unoptimized
                       />
 
                     </div>
 
 
-                    {/* DETAILS */}
 
                     <div className={styles.itemDetails}>
 
@@ -183,7 +182,7 @@ export default function CartPage() {
                       </div>
 
 
-                      {/* CLAMP */}
+                    
 
                       {item.addClamp &&
                         item.product.clamp && (
@@ -198,7 +197,7 @@ export default function CartPage() {
                     </div>
 
 
-                    {/* QUANTITY */}
+                  
 
                     <div className={styles.quantityBox}>
 
@@ -241,7 +240,7 @@ export default function CartPage() {
                     </div>
 
 
-                    {/* PRICE */}
+                 
 
                     <div className={styles.itemPrice}>
 
@@ -284,7 +283,7 @@ export default function CartPage() {
             </div>
 
 
-            {/* ================= SUMMARY ================= */}
+          
 
             <aside className={styles.summary}>
 
@@ -388,7 +387,6 @@ export default function CartPage() {
       </section>
 
 
-      {/* ================= FOOTER ================= */}
 
       <footer className={styles.footer}>
 

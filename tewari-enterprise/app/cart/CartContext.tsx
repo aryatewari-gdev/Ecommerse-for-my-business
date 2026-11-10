@@ -11,20 +11,12 @@ import {
 import { Product } from "@/app/data/products";
 
 
-/* =====================================================
-   CART ITEM TYPE
-   ===================================================== */
-
 export type CartItem = {
   product: Product;
   quantity: number;
   addClamp: boolean;
 };
 
-
-/* =====================================================
-   CONTEXT TYPE
-   ===================================================== */
 
 type CartContextType = {
   items: CartItem[];
@@ -50,19 +42,11 @@ type CartContextType = {
 };
 
 
-/* =====================================================
-   CREATE CONTEXT
-   ===================================================== */
-
 const CartContext =
   createContext<CartContextType | undefined>(
     undefined
   );
 
-
-/* =====================================================
-   PROVIDER
-   ===================================================== */
 
 export function CartProvider({
   children,
@@ -74,13 +58,6 @@ export function CartProvider({
     []
   );
 
-
-  /* =====================================================
-     LOAD CART FROM BROWSER
-
-     This means the cart doesn't disappear when the
-     user changes pages or refreshes the website.
-     ===================================================== */
 
   useEffect(() => {
 
@@ -109,10 +86,6 @@ export function CartProvider({
   }, []);
 
 
-  /* =====================================================
-     SAVE CART
-     ===================================================== */
-
   useEffect(() => {
 
     try {
@@ -134,10 +107,6 @@ export function CartProvider({
   }, [items]);
 
 
-  /* =====================================================
-     ADD TO CART
-     ===================================================== */
-
   function addToCart(
     product: Product,
     quantity: number,
@@ -153,10 +122,6 @@ export function CartProvider({
             item.addClamp === addClamp
         );
 
-
-      /* -----------------------------------------------
-         PRODUCT ALREADY EXISTS
-         ----------------------------------------------- */
 
       if (existingIndex !== -1) {
 
@@ -183,10 +148,6 @@ export function CartProvider({
       }
 
 
-      /* -----------------------------------------------
-         NEW PRODUCT
-         ----------------------------------------------- */
-
       return [
 
         ...currentItems,
@@ -204,10 +165,6 @@ export function CartProvider({
   }
 
 
-  /* =====================================================
-     REMOVE FROM CART
-     ===================================================== */
-
   function removeFromCart(
     productId: string
   ) {
@@ -221,10 +178,6 @@ export function CartProvider({
 
   }
 
-
-  /* =====================================================
-     UPDATE QUANTITY
-     ===================================================== */
 
   function updateQuantity(
     productId: string,
@@ -258,11 +211,6 @@ export function CartProvider({
 
   }
 
-
-  /* =====================================================
-     CLEAR CART
-     ===================================================== */
-
   function clearCart() {
 
     setItems([]);
@@ -270,20 +218,12 @@ export function CartProvider({
   }
 
 
-  /* =====================================================
-     CART COUNT
-     ===================================================== */
-
   const cartCount = items.reduce(
     (total, item) =>
       total + item.quantity,
     0
   );
 
-
-  /* =====================================================
-     TOTAL PRICE
-     ===================================================== */
 
   const total = items.reduce(
     (sum, item) => {
@@ -313,11 +253,6 @@ export function CartProvider({
     0
   );
 
-
-  /* =====================================================
-     PROVIDER
-     ===================================================== */
-
   return (
 
     <CartContext.Provider
@@ -340,10 +275,6 @@ export function CartProvider({
 
 }
 
-
-/* =====================================================
-   USE CART HOOK
-   ===================================================== */
 
 export function useCart() {
 
