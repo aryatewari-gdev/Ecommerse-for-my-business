@@ -357,18 +357,12 @@ export default function CartPage() {
 
               </div>
 
-
-              <button
-                type="button"
-                className={styles.checkoutButton}
-                onClick={() =>
-                  alert(
-                    "Checkout will be connected next."
-                  )
-                }
-              >
-                PROCEED TO CHECKOUT →
-              </button>
+<Link
+  href="/checkout"
+  className={styles.checkoutButton}
+>
+  PROCEED TO CHECKOUT →
+</Link>
 
 
               <Link
